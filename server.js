@@ -8,11 +8,11 @@ server.listen(process.env.port || process.env.PORT || 3978, () => {
 });
 
 const connector = new builder.ChatConnector({
-  appId: process.env.MicrosoftAppId || 'd49dab97-26d5-496d-8f1c-44deed41f46b',
-  appPassword: process.env.MicrosoftAppPassword || 'ft1KopBYA6ZhP82gSfDQeAb'
+  appId: process.env.MicrosoftAppId,
+  appPassword: process.env.MicrosoftAppPassword,
 });
 
 server.post('/api/messages', connector.listen());
 
-let controller = new controllerInstance(connector, builder);
+const controller = new controllerInstance(connector, builder);
 controller.listen();

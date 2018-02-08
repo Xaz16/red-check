@@ -29,20 +29,25 @@ class ApiService {
       low: {}
     };
 
-    res.data.time_entries.map((item) => {
-      let hours = data[item.user.name] ? data[item.user.name].time : 0;
-      data[item.user.name] = {
-        time: hours += item.hours
-      }
-    });
+    try {
+      res.data.time_entries.map((item) => {
+        let hours = data[item.user.name] ? data[item.user.name].time : 0;
+        data[item.user.name] = {
+          time: hours += item.hours
+        }
+      });
 
-    for(let key in data) {
-      if(key !== 'low' && data[key] && data[key].time < 8) {
-        data.low[key] = { time: 0 };
-        data.low[key].time = data[key].time;
-        delete data[key];
+      for(let key in data) {
+        if(key !== 'low' && data[key] && data[key].time < 8) {
+          data.low[key] = { time: 0 };
+          data.low[key].time = data[key].time;
+          delete data[key];
+        }
       }
+    } catch (err) {
+      console.log(err);
     }
+
 
     return data;
   }

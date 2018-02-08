@@ -5,6 +5,7 @@ const FileSvc = require('./FileSvc');
 class Gather {
   constructor(pathToStorage) {
     this.storagePath = path.resolve(__dirname + pathToStorage) + '/';
+    this.defaultStoragePath = path.resolve(__dirname + pathToStorage) + '/data.json';
     this.fileSvc = new FileSvc();
   }
 
@@ -19,7 +20,7 @@ class Gather {
     if(!this.dataStorePath) {
       return false;
     }
-    return console.log(fs.existsSync(this.storagePath));
+    return fs.existsSync(this.storagePath);
   }
 
   async createFile(name = 'data') {

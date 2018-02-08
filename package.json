@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "send": "node app/Crons/send.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "botbuilder": "^3.14.0",
+    "node-cron": "^1.2.1",
     "restify": "^6.3.4"
   }
 }
