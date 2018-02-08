@@ -1,1 +1,3 @@
-Check some account 1
+Redmine bot checker.
+ 
+Special for Andrei.
