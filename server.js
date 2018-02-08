@@ -13,6 +13,8 @@ const connector = new builder.ChatConnector({
 });
 
 server.post('/api/messages', connector.listen());
-
+server.get('/', (req, res) => {
+  res.send(200);
+});
 const controller = new controllerInstance(connector, builder);
 controller.listen();

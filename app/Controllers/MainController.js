@@ -12,14 +12,17 @@ class MainController {
     this.responder = new Responder();
     this.crons = crons;
     this.gather = new Gather('../../storage/');
+    this.enabledCrons = [];
   }
 
   listen() {
     this.bot = this.initBot(async (session) => {
       let currentUser = await this.api.currentUser;
       session.send(`Current api user is ${currentUser.data.user.firstname}`);
-      this.crons.send(this.responder.onWorkPhrase, [this.api, session, this.gather]);
-      session.send(`Send cron launched`);
+      if(this.enabledCrons.length === 0) {
+        this.enabledCrons.push(this.crons.send(this.responder.onWorkPhrase, [this.api, session, this.gather]));
+        session.send(`Send cron launched`);
+      }
 
       if (session.message.text.match(/работать/g) !== null) {
         this.responder.onWorkPhrase(this.api, session, this.gather);
