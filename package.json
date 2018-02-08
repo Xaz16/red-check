@@ -1,0 +1,25 @@
+{
+  "name": "red-check",
+  "version": "1.0.0",
+  "description": "Check some account 1",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xaz16/red-check.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xaz16/red-check/issues"
+  },
+  "homepage": "https://github.com/Xaz16/red-check#readme",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "botbuilder": "^3.14.0",
+    "restify": "^6.3.4"
+  }
+}
