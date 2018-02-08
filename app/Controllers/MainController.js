@@ -28,9 +28,10 @@ class MainController {
       if (session.message.text.match(/bind/g) !== null && session.message.address.user.name === process.env.ownerName) {
         if (!this.gather.dataExists()) {
           await this.gather.createFile();
-          this.gather.addAddress(session.message.address);
           console.log(session.message.address);
         }
+        session.send(`Binded to chat`);
+        this.gather.addAddress(session.message.address);
       }
     });
 
