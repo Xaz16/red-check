@@ -9,15 +9,13 @@ class Responder {
     const data = await ApiSvc.getTodayEntries();
     let message = '';
     let notEnoughMessage = '<br/><br/>';
-    console.log(Object.keys(data).length )
-    if(Object.keys(data).length > 1) {
+    if(Object.keys(data).length > 1 || Object.keys(data).length >= 1) {
       for(let key in data) {
         if(key !== 'low') {
           message += `${key} logged ${data[key].time.toFixed(2)}<br/>`;
         }
       }
       for(let key in data.low) {
-        console.log(key);
         notEnoughMessage += `${key} logged ${data.low[key].time.toFixed(2)} is not enough<br/>`;
       }
     } else {

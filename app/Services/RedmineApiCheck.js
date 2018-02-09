@@ -25,14 +25,11 @@ class ApiService {
       limit: 200
     }});
 
-    console.log(today);
-
     let data = {
       low: {}
     };
 
     try {
-      console.log(res.data.time_entries);
       res.data.time_entries.map((item) => {
         let hours = data[item.user.name] ? data[item.user.name].time : 0;
         data[item.user.name] = {

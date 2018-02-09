@@ -10,7 +10,6 @@ class Gather {
   }
 
   async addAddress(address, dataStore = this.dataStorePath) {
-    console.log(dataStore);
     const data = JSON.parse(await this.fileSvc.getFileData(dataStore));
     const writeData = JSON.stringify(Object.assign(data, address));
     this.fileSvc.writeFile(dataStore, writeData);
