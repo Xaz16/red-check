@@ -25,6 +25,8 @@ class ApiService {
       limit: 200
     }});
 
+    console.log(today);
+
     let data = {
       low: {}
     };
