@@ -1,7 +1,5 @@
 const axios = require('axios');
 
-let instance = null;
-
 class Requester {
   /**
    * Singleton constructor
@@ -10,16 +8,11 @@ class Requester {
    * @returns {*}
    */
   constructor(apiKey, apiUrl) {
-    if(!instance) {
-      instance = this;
-    }
     this.instance = axios.create({
       baseURL: apiUrl,
       timeout: 10000,
       headers: {'X-Redmine-API-Key': apiKey}
     });
-
-    return instance;
   }
 
   /**

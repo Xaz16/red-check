@@ -1,9 +1,9 @@
 const fs = require('fs');
-
+const path = require('path');
 class FileSvc {
-  getFileData(path) {
+  getFileData(pathTo) {
     return new Promise((resolve, reject) => {
-      fs.readFile(path, 'utf-8', (err, data) => {
+      fs.readFile(path.resolve(pathTo), 'utf-8', (err, data) => {
         if(err) reject(err);
         resolve(data);
       })

@@ -17,8 +17,8 @@ class MainController {
 
   listen() {
     this.bot = this.initBot(async (session) => {
-      let currentUser = await this.api.currentUser;
-      session.send(`Current api user is ${currentUser.data.user.firstname}`);
+      let names = await this.api.currentUsers();
+      session.send(`Current api user/users is/are ${names}`);
       if(this.enabledCrons.length === 0) {
         this.enabledCrons.push(this.crons.send(this.responder.onWorkPhrase, [this.api, session, this.gather]));
         session.send(`Send cron launched`);

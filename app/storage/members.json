@@ -1,15 +1,41 @@
-[
-  "Sergey front-end",
-  "Aleksey front-end",
-  "Alexander Front-end",
-  "Sergey Designer",
-  "Dmytriy Back-end",
-  "Mikhail Front-end",
-  "Maksym Back-end ",
-  "Nikita QA",
-  "Yaroslav QA",
-  "Yevhen front-end",
-  "Yevgen QA",
-  "Anastasiia front-end ",
-  "Alina Back-end"
-]
+{
+  "Sergey front-end": {
+    "time": 0
+  },
+  "Aleksey front-end": {
+    "time": 0
+  },
+  "Alexander Front-end": {
+    "time": 0
+  },
+  "Sergey Designer": {
+    "time": 0
+  },
+  "Dmytriy Back-end": {
+    "time": 0
+  },
+  "Mikhail Front-end": {
+    "time": 0
+  },
+  "Maksym Back-end ": {
+    "time": 0
+  },
+  "Nikita QA": {
+    "time": 0
+  },
+  "Yaroslav QA": {
+    "time": 0
+  },
+  "Yevhen front-end": {
+    "time": 0
+  },
+  "Yevgen QA": {
+    "time": 0
+  },
+  "Anastasiia front-end ": {
+    "time": 0
+  },
+  "Alina Back-end": {
+    "time": 0
+  }
+}
