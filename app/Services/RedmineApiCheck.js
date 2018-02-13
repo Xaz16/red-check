@@ -6,14 +6,15 @@ class ApiService {
   constructor() {
     this.requesters = [];
     this.keys = [];
+    this.memberer = new Memberer();
 
-    for(let key in process.env) {
-      if(key.match(/apiKey/g)) {
+    for (let key in process.env) {
+      if (key.match(/apiKey/g)) {
         this.keys.push(process.env[key]);
       }
     }
 
-    for(let val of this.keys) {
+    for (let val of this.keys) {
       this.requesters.push(new Requester(val, process.env.apiUrl))
     }
 
@@ -23,7 +24,7 @@ class ApiService {
     let names = '';
     const data = [];
     this.requesters.forEach((el) => {
-      data.push(el.makeRequest({url: '/users/current.json'}));
+      data.push(el.makeRequest({ url: '/users/current.json' }));
     });
 
     const users = await Promise.all(data);
@@ -35,12 +36,13 @@ class ApiService {
   async getTodayEntries() {
     this.requests = [];
     this.res = [];
-    const data = await Memberer.getMembers();
+    const data = await this.memberer.getMembers();
+    const date = new Date();
     data.low = {};
     const today = {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1),
-      day: new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()
+      year: date.getFullYear(),
+      month: date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
+      day: date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
     };
 
     this.requesters.forEach((el) => {
@@ -52,17 +54,29 @@ class ApiService {
       });
       this.requests.push(req);
     });
+
     return Promise.all(this.requests).then((responses) => {
       let times = [];
-      responses.forEach(item => times.push(item.data.time_entries));
+      const ids = {};
+      responses.forEach((item) => {
+        for (const val of item.data.time_entries) {
+          times.push(val);
+        }
+      });
+      times = times.filter((item) => {
+        if (ids[item.id]) {
+          return false;
+        }
+        ids[item.id] = true;
+        return true;
+
+      });
       try {
-        times.forEach((item) => {
-          item.map((item) => {
-            let hours = data[item.user.name] ? data[item.user.name].time : 0;
-            data[item.user.name] = {
-              time: hours += item.hours
-            }
-          });
+        times.map((item) => {
+          let hours = data[item.user.name] ? data[item.user.name].time : 0;
+          data[item.user.name] = {
+            time: hours + item.hours
+          }
         });
 
         for (let key in data) {

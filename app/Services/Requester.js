@@ -2,7 +2,7 @@ const axios = require('axios');
 
 class Requester {
   /**
-   * Singleton constructor
+   * Creating own instance of axios
    * @param apiKey
    * @param apiUrl
    * @returns {*}

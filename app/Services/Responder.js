@@ -1,12 +1,18 @@
 const FileSvc = require('./FileSvc');
+const Memberer = require('./Memberer');
 
 class Responder {
   constructor() {
+    this.memberer = new Memberer();
   }
 
   async onWorkPhrase(ApiSvc, session, gather) {
-    session.message.address = JSON.parse( await gather.fileSvc.getFileData(gather.defaultStoragePath));
+    session.message.address = JSON.parse(await gather.fileSvc.getFileData(gather.defaultStoragePath));
     const data = await ApiSvc.getTodayEntries();
+    const newMember = this.memberer.checkForNewMember(data);
+    if(newMember) {
+      this.memberer.saveNewMember(newMember);
+    }
     let message = '';
     let notEnoughMessage = '<br/><br/>';
     if(Object.keys(data).length > 1 || Object.keys(data.low).length >= 1) {

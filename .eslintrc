@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "prettier"
+  ],
+  "globals": {
+    "require": true
+  },
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017
+  }
+}

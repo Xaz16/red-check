@@ -23,5 +23,9 @@
     "botbuilder": "^3.14.0",
     "node-cron": "^1.2.1",
     "restify": "^6.3.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-prettier": "^2.9.0"
   }
 }
