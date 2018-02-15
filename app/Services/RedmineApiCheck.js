@@ -42,8 +42,7 @@ class ApiService {
     const today = {
       year: date.getFullYear(),
       month: date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
-      // day: date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-      day: 14
+      day: date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
     };
 
     this.requesters.forEach((el) => {
