@@ -42,7 +42,8 @@ class ApiService {
     const today = {
       year: date.getFullYear(),
       month: date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
-      day: date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+      // day: date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+      day: 14
     };
 
     this.requesters.forEach((el) => {
@@ -63,6 +64,7 @@ class ApiService {
           times.push(val);
         }
       });
+
       times = times.filter((item) => {
         if (ids[item.id]) {
           return false;
