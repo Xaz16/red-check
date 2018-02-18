@@ -28,7 +28,7 @@ class MainController {
         this.responder.onWorkPhrase(this.api, session, this.gather);
       }
 
-      if (session.message.text.match(/bind/g) !== null && session.message.address.user.name === process.env.ownerName) {
+      if (session.message.text.match(/bind/g) !== null) {
         if (!this.gather.dataExists()) {
           await this.gather.createFile();
           console.log(session.message.address);
