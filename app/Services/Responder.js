@@ -14,7 +14,7 @@ class Responder {
     if(newMember) {
       this.memberer.saveNewMember(newMember);
     }
-    let message = '';
+    let message = options.date ? `Data for date: ${options.date.day} ${options.date.month} ${new Date().getFullYear()}` : '';
     let notEnoughMessage = '<br/><br/>';
     if(Object.keys(data).length > 1 || Object.keys(data.low).length >= 1) {
       for(let key in data) {
