@@ -33,13 +33,13 @@ class ApiService {
     return names;
   }
 
-  async getTodayEntries() {
+  async getTimeEntries(reqDate) {
     this.requests = [];
     this.res = [];
     const data = await this.memberer.getMembers();
     const date = new Date();
     data.low = {};
-    const today = {
+    const today = reqDate || {
       year: date.getFullYear(),
       month: date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
       day: date.getDate() < 10 ? '0' + date.getDate() : date.getDate()

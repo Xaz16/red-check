@@ -6,9 +6,10 @@ class Responder {
     this.memberer = new Memberer();
   }
 
-  async onWorkPhrase(ApiSvc, session, gather) {
+  async onWorkPhrase(ApiSvc, session, gather, config) {
+    const options = config || {};
     session.message.address = JSON.parse(await gather.fileSvc.getFileData(gather.defaultStoragePath));
-    const data = await ApiSvc.getTodayEntries();
+    const data = await ApiSvc.getTimeEntries(options.date);
     const newMember = this.memberer.checkForNewMember(data);
     if(newMember) {
       this.memberer.saveNewMember(newMember);

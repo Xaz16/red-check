@@ -17,15 +17,27 @@ class MainController {
 
   listen() {
     this.bot = this.initBot(async (session) => {
-      let names = await this.api.currentUsers();
-      session.send(`Current api user/users is/are ${names}`);
+      const names = await this.api.currentUsers();
+      const dateInMessage = session.message.text.match(/(\d+) (\d+)/);
+      session.send(`Current api user/users is/are ${names}\nDate data schema: DD MM of current year`);
       if(this.enabledCrons.length === 0) {
         this.enabledCrons.push(this.crons.send(this.responder.onWorkPhrase, [this.api, session, this.gather]));
         session.send(`Send cron launched`);
       }
 
-      if (session.message.text.match(/работать/g) !== null) {
+      if (session.message.text.match(/работать|work|1/g) !== null) {
         this.responder.onWorkPhrase(this.api, session, this.gather);
+      }
+
+      if (dateInMessage !== null) {
+        const date = new Date();
+        this.responder.onWorkPhrase(this.api, session, this.gather, {
+          date: {
+            year: date.getFullYear(),
+            month: dateInMessage[2],
+            day: dateInMessage[1]
+          }
+        });
       }
 
       if (session.message.text.match(/bind/g) !== null) {
