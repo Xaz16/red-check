@@ -19,7 +19,7 @@ class MainController {
     this.bot = this.initBot(async (session) => {
       const names = await this.api.currentUsers();
       const dateInMessage = session.message.text.match(/(\d+) (\d+)/);
-      session.send(`Current api user/users is/are ${names}\nDate data schema: DD MM of current year`);
+      session.send(`Current api user/users is/are ${names}<br/>Date data schema: DD MM of current year`);
       if(this.enabledCrons.length === 0) {
         this.enabledCrons.push(this.crons.send(this.responder.onWorkPhrase, [this.api, session, this.gather]));
         session.send(`Send cron launched`);
