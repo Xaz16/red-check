@@ -25,6 +25,7 @@ class MainController {
         session.send(`Send cron launched`);
       }
 
+
       if (session.message.text.match(/работать|work|^1$/g) !== null) {
         this.responder.onWorkPhrase(this.api, session, this.gather);
       }
